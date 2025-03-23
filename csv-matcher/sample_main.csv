@@ -1,0 +1,16 @@
+DeviceID,DeviceModel,Manufacturer,Location
+1001,DS-2CD2385G1-I,Hikvision,Building A
+1002,NVR4216-16P-4KS2,Dahua,Building B
+1003,DS-7608NI-K2,Hikvision,Building C
+1004,IPC-HDBW4631R-ZS,Dahua,Building A
+1005,DS-2CD2T47G1-L,Hikvision,Building D
+1006,NVR5216-16P-I,Dahua,Building E
+1007,DS-2DE4425IW-DE,Hikvision,Building F
+1008,WV-SFN311,Panasonic,Building G
+1009,FD8382-TV,Vivotek,Building H
+1010,XNF-8010R,Samsung,Building I
+1011,VIGI NVR1008H,TP-Link,Building J
+1012,PT-NR2A16-Q1,Dahua,Building K
+1013,DS-96064NI-I16,Hikvision,Building L
+1014,SATATYA NVR0801X,Matrix,Building M
+1015,Unknown Model,Generic,Building N

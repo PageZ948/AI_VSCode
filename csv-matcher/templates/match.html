@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Matcher - Column Selection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        .header {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Column Selection</h1>
+            <p class="lead">Select which columns to use for matching and data enhancement</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Select Column to Match</h5>
+                        <form action="/process" method="post">
+                            <div class="form-group">
+                                <label for="main_match_col">Your File Match Column:</label>
+                                <select class="form-select" id="main_match_col" name="main_match_col" required>
+                                    <option value="" selected disabled>Select column from your file</option>
+                                    {% for header in main_headers %}
+                                    <option value="{{ header }}">{{ header }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="form-text">This is the column in your file that contains the device model or product name to match against the database.</div>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <p><strong>Database Information:</strong></p>
+                                <p>Your data will be matched against the "product_name" column in the database, and the "profiles" column will be added to your results.</p>
+                                <p>The database contains over 80,000 ONVIF compliant devices with their supported profiles.</p>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Process Files</button>
+                            <a href="/" class="btn btn-secondary">Back</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">How Matching Works</h5>
+                        <p>The tool will:</p>
+                        <ol>
+                            <li>Look up each value from your selected column</li>
+                            <li>Find matching values in the database's "product_name" column</li>
+                            <li>Add the corresponding ONVIF profiles from the database</li>
+                            <li>Add notes and color coding based on the number of profiles found</li>
+                        </ol>
+                        <p>For best results:</p>
+                        <ul>
+                            <li>Select the column that contains your device model or product name</li>
+                            <li>Make sure your device models follow standard naming conventions</li>
+                            <li>The database supports wildcard matching (e.g., "DS-*" will match "DS-2CD2385G1-I")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
