@@ -37,8 +37,8 @@
         .color-blue {
             background-color: #007bff;
         }
-        .color-none {
-            background-color: #e9ecef;
+        .color-red {
+            background-color: #dc3545;
         }
         .bg-green {
             background-color: #d4edda;
@@ -49,8 +49,14 @@
         .bg-blue {
             background-color: #cce5ff;
         }
-        .bg-none {
-            background-color: #f8f9fa;
+        .bg-red {
+            background-color: #f8d7da;
+        }
+        /* Custom checkbox styles */
+        .checkbox-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -73,17 +79,17 @@
                         <h5 class="card-title">Color Coding Legend</h5>
                         <div class="d-flex flex-wrap">
                             <div class="me-4">
-                                <span class="color-indicator color-green"></span> 3+ profiles
+                                <span class="color-indicator color-green"></span> 2+ profiles
                             </div>
                             <div class="me-4">
-                                <span class="color-indicator color-yellow"></span> 2 profiles
+                                <span class="color-indicator color-yellow"></span> 1 profile
                             </div>
                             <div class="me-4">
-                                <span class="color-indicator color-blue"></span> 1 profile
+                                <span class="color-indicator color-red"></span> No match found
                             </div>
-                            <div>
-                                <span class="color-indicator color-none"></span> No match found
-                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-muted">Note: Red model numbers means there was a fuzzy match. Check source data and confirm Onvif profiles.</small>
                         </div>
                     </div>
                 </div>
@@ -93,30 +99,39 @@
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                {% for column in columns %}
-                                <th>{{ column }}</th>
-                                {% endfor %}
+                                <th>Selected Match Column</th>
+                                <th>Matched Profiles</th>
+                                <th>Match Source</th>
+                                <th>Fuzzy Match Used</th>
+                                <th>Color Code</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for row in preview_data %}
                             <tr>
-                                {% for column in columns %}
-                                {% if column == 'Matched_Profiles' %}
-                                <td class="{% if row['Color_Code'] == 'Green' %}bg-green{% elif row['Color_Code'] == 'Yellow' %}bg-yellow{% elif row['Color_Code'] == 'Blue' %}bg-blue{% else %}bg-none{% endif %}">
-                                    {{ row[column] }}
+                                <!-- Display only the selected match column, with red text if fuzzy match was used -->
+                                <td {% if row['Fuzzy_Match_Used'] %}style="color: red;"{% endif %}>{{ row[session['main_match_col']] }}</td>
+                                
+                                <!-- Display the matched profiles with color coding -->
+                                <td class="{% if row['Color_Code'] == 'Green' %}bg-green{% elif row['Color_Code'] == 'Yellow' %}bg-yellow{% elif row['Color_Code'] == 'Red' %}bg-red{% endif %}">
+                                    {{ row['Matched_Profiles'] }}
                                 </td>
-                                {% elif column == 'Color_Code' %}
+                                
+                                <!-- Display the match source -->
+                                <td>{{ row['Match_Source'] }}</td>
+                                
+                                <!-- Display whether fuzzy matching was used -->
+                                <td class="checkbox-container">
+                                    <input type="checkbox" {% if row['Fuzzy_Match_Used'] %}checked{% endif %} disabled>
+                                </td>
+                                
+                                <!-- Display the color code -->
                                 <td>
-                                    <span class="color-indicator 
-                                        {% if row[column] == 'Green' %}color-green{% elif row[column] == 'Yellow' %}color-yellow{% elif row[column] == 'Blue' %}color-blue{% else %}color-none{% endif %}">
+                                    <span class="color-indicator
+                                        {% if row['Color_Code'] == 'Green' %}color-green{% elif row['Color_Code'] == 'Yellow' %}color-yellow{% elif row['Color_Code'] == 'Red' %}color-red{% endif %}">
                                     </span>
-                                    {{ row[column] }}
+                                    {{ row['Color_Code'] }}
                                 </td>
-                                {% else %}
-                                <td>{{ row[column] }}</td>
-                                {% endif %}
-                                {% endfor %}
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -131,5 +146,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>

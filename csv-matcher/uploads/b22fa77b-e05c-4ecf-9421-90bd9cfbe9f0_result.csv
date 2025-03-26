@@ -1,0 +1,10 @@
+Model,Matched_Profiles,Fuzzy_Match_Used,Match_Source,Notes,Color_Code
+GV-TVD8810,"M, T, S, G",False,GV-TVD8810,4 profiles,Green
+GV-AVD2700,,False,,No matching device found,Red
+GV-EBD4711,"M, T, S, G",True,GV-EBD4813,4 profiles (fuzzy match: 'GV-EBD4813'),Green
+GV-VD2540,,False,,No matching device found,Red
+84-VD57110-0010,,False,,No matching device found,Red
+GV-EFD4700-0F,,False,,No matching device found,Red
+GV-VD2712,,False,,No matching device found,Red
+GV-MFD2700-0F,,False,,No matching device found,Red
+GV-MFD2700-6F,,False,,No matching device found,Red

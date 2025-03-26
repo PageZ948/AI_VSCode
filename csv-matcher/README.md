@@ -8,6 +8,7 @@ A web-based tool that matches values in a CSV file against a built-in ONVIF devi
 - Built-in database with over 80,000 ONVIF compliant devices
 - Simply select which column in your file contains the device model/name
 - Automatically matches against the "product_name" column in the database
+- **Fuzzy matching** for items that don't have an exact match
 - Adds the "profiles" information from the database to your data
 - Color-codes results based on the number of matched profiles
 - Download the enhanced CSV file with all the original data plus the matched values
@@ -16,7 +17,7 @@ A web-based tool that matches values in a CSV file against a built-in ONVIF devi
 
 1. **Upload File**: Upload your CSV file that contains device information
 2. **Select Column**: Choose which column in your file contains the device model or product name
-3. **Process**: The tool matches your devices against the database's "product_name" column and adds the corresponding "profiles" information
+3. **Process**: The tool first tries to find exact matches in the database's "product_name" column. For items without an exact match, it uses fuzzy matching to find the closest match. It then adds the corresponding "profiles" information.
 4. **Download**: Get your enhanced CSV file with all the original data plus the matched profiles
 
 ## Color Coding
@@ -34,6 +35,7 @@ Results are color-coded based on the number of profiles found:
 - Python 3.6 or higher
 - Flask
 - pandas
+- rapidfuzz (for fuzzy matching)
 
 ### Installation
 
@@ -41,7 +43,7 @@ Results are color-coded based on the number of profiles found:
 2. Install the required packages:
 
 ```bash
-pip install flask pandas
+pip install -r requirements.txt
 ```
 
 ### Running the Application
@@ -88,3 +90,5 @@ To test the application with the sample file:
 - The tool creates an "uploads" directory to temporarily store uploaded and processed files
 - Files are automatically cleaned up when you click "Start Over"
 - For large files, processing may take a moment
+- Fuzzy matching is used when an exact match isn't found, helping to match items with typos or slight variations
+- Results that used fuzzy matching will be marked with "(fuzzy match: 'source')" in the Notes column, showing which database entry was matched

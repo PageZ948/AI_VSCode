@@ -1,0 +1,18 @@
+Model,Matched_Profiles,Fuzzy_Match_Used,Match_Source,Notes,Color_Code
+P3245-LV,"T, S, G",False,P3245-LV,3 profiles,Green
+P3225-LV Mk II,"T, S, G",False,P3225-LV Mk II,3 profiles,Green
+P3707-PE,"G, S",False,P3707-PE,2 profiles,Green
+Q6055-E,"S, G",False,Q6055-E,2 profiles,Green
+P3225-V Mk II,"T, S, G",False,P3225-V Mk II,3 profiles,Green
+Q6000-E Mk II,"G, S",False,Q6000-E Mk II,2 profiles,Green
+Q3708-PVE,"S, G",False,Q3708-PVE,2 profiles,Green
+P3225-LVE Mk II,"T, S, G",False,P3225-LVE Mk II,3 profiles,Green
+P3364,"G, S",True,P3364-L,2 profiles (fuzzy match: 'P3364-L'),Green
+P3224-V Mk II,"T, S, G",False,P3224-V Mk II,3 profiles,Green
+P3354,"G, S",False,P3354,2 profiles,Green
+P1427-E,"S, G",False,P1427-E,2 profiles,Green
+Q6044-E,"G, S",False,Q6044-E,2 profiles,Green
+P3215-V,"G, S",False,P3215-V,2 profiles,Green
+Q6045-E Mk II,"G, S",False,Q6045-E Mk II,2 profiles,Green
+P1425-LE,"S, G",False,P1425-LE,2 profiles,Green
+M7001,"G, S",True,M7011,2 profiles (fuzzy match: 'M7011'),Green
